@@ -128,6 +128,11 @@ sealed class StreamT[M[_], A](val step: M[StreamT.Step[A, StreamT[M, A]]]) {
        )
     }
 
+  def traverse[G[_], B](f: A => G[B])(implicit M: Monad[M], T: Traverse[M], G: Applicative[G]): G[StreamT[M, B]] = {
+    import std.stream._
+    G.map(T.traverse(toStream)(Traverse[Stream].traverse(_)(f)))(StreamT.fromStream(_))
+  }
+
   def length(implicit m: Monad[M]): M[Int] = {
     def addOne(c: => Int, a: => A) = 1 + c
     foldLeft(0)(addOne _)

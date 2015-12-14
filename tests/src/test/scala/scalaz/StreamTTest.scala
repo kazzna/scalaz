@@ -55,6 +55,14 @@ object StreamTTest extends SpecLite {
       StreamT.fromStream(s.some).foldMap(_.toString) must_==(s.foldMap(_.toString))
   }
 
+  "traverse" ! forAll {
+    (s: Stream[Stream[Int]]) =>
+      import scalaz.std.stream._
+      import scalaz.syntax.traverse._
+      val f = (i: Int) => List(i.toString)
+      StreamT.fromStream(s).traverse(f).map(_.toStream) must_==(s.traverse(_.traverse(f)))
+  }
+
   checkAll(equal.laws[StreamTOpt[Int]])
   checkAll(monoid.laws[StreamTOpt[Int]])
   checkAll(monadPlus.laws[StreamTOpt])

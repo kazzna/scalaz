@@ -39,6 +39,8 @@ trait Syntaxes {
 
   object monad extends ToMonadOps
 
+  object nondeterminism extends ToNondeterminismOps
+
   object cobind extends ToCobindOps
 
   object comonad extends ToComonadOps

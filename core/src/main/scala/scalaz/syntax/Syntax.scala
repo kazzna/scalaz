@@ -156,7 +156,7 @@ trait ToTypeClassOps
   extends ToSemigroupOps with ToMonoidOps with ToEqualOps with ToShowOps
   with ToOrderOps with ToEnumOps with ToPlusEmptyOps
   with ToFunctorOps with ToContravariantOps with ToApplyOps
-  with ToApplicativeOps with ToBindOps with ToMonadOps with ToComonadOps
+  with ToApplicativeOps with ToBindOps with ToMonadOps with ToNondeterminismOps with ToComonadOps
   with ToBifoldableOps with ToCozipOps
   with ToPlusOps with ToApplicativePlusOps with ToMonadPlusOps with ToTraverseOps with ToBifunctorOps with ToAssociativeOps
   with ToBitraverseOps with ToComposeOps with ToCategoryOps
